@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calle Príncipe 18 — Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a84c;--gold-light:#e8c97a;--dark:#0f0d0a;--dark-2:#161310;--dark-3:#1e1a14;--dark-4:#252018;--cream:#f5f0e8;--cream-2:#ede6d6;--muted:#8a7e6a;--red:#c60b1e}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--cream);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(15,13,10,.95),transparent);backdrop-filter:blur(8px)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--gold-light);letter-spacing:2px;text-transform:uppercase;text-decoration:none}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--gold-light)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(201,168,76,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(198,11,30,.05) 0%,transparent 60%)}
+.hero-tag{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,8vw,110px);font-weight:300;line-height:.95;color:var(--cream);margin-bottom:8px;opacity:0;animation:fadeUp .8s .4s forwards}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-address{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,3vw,28px);font-weight:300;color:var(--muted);letter-spacing:4px;margin-bottom:40px;opacity:0;animation:fadeUp .8s .6s forwards}
+.hero-desc{max-width:480px;font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:48px;opacity:0;animation:fadeUp .8s .8s forwards}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s 1s forwards}
+.btn-primary{padding:14px 32px;background:linear-gradient(135deg,var(--gold),#a8863a);color:var(--dark);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:500;border-radius:2px;transition:all .3s;border:none;cursor:pointer;font-family:'Outfit',sans-serif}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3)}
+.btn-secondary{padding:14px 32px;background:transparent;color:var(--cream-2);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:400;border-radius:2px;border:1px solid rgba(201,168,76,.3);transition:all .3s;cursor:pointer;font-family:'Outfit',sans-serif}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold-light)}
+.scroll-line{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp .8s 1.4s forwards}
+.scroll-line span{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.scroll-line-bar{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:pulse 2s infinite}
+.divider{width:80px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto}
+section{padding:100px 48px;max-width:1200px;margin:0 auto}
+.section-tag{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:300;line-height:1.1;margin-bottom:20px}
+.section-title em{font-style:italic;color:var(--gold-light)}
+.section-desc{font-size:15px;color:var(--muted);line-height:1.8;max-width:560px;margin-bottom:60px}
+#hostels{padding-top:0}
+.hostels-intro{text-align:center;padding:100px 48px 60px;max-width:1200px;margin:0 auto}
+.hostels-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;max-width:1200px;margin:0 auto}
+.hostel-card{background:var(--dark-3);padding:52px 48px;cursor:pointer;transition:all .4s;position:relative;overflow:hidden;border:1px solid rgba(201,168,76,.06);text-decoration:none;display:block}
+.hostel-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.05) 0%,transparent 60%);opacity:0;transition:opacity .4s}
+.hostel-card:hover::before{opacity:1}
+.hostel-card:hover{border-color:rgba(201,168,76,.2)}
+.hostel-card:hover .hostel-arrow{transform:translateX(6px)}
+.hostel-emoji{font-size:32px;margin-bottom:20px;display:block}
+.hostel-card-name{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;color:var(--cream);margin-bottom:8px;line-height:1.1}
+.hostel-card-floor{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hostel-card-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px}
+.hostel-arrow{font-size:18px;color:var(--gold);transition:transform .3s;display:inline-block}
+.hostel-detail{display:none;background:var(--dark-2);border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1)}
+.hostel-detail.active{display:block}
+.hostel-detail-inner{max-width:1200px;margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.hostel-detail-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,64px);font-weight:300;line-height:1;margin-bottom:8px}
+.hostel-detail-subtitle{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px}
+.hostel-detail-info{display:flex;flex-direction:column;gap:0}
+.info-item{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(201,168,76,.08)}
+.info-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.info-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.info-value{font-size:15px;color:var(--cream);line-height:1.5}
+.hostel-detail-right{display:flex;flex-direction:column;gap:16px}
+.hostel-features{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feature{background:var(--dark-4);border:1px solid rgba(201,168,76,.1);padding:14px;border-radius:4px;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.call-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:18px 32px;background:linear-gradient(135deg,var(--gold),#a8863a);color:var(--dark);text-decoration:none;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:500;border-radius:2px;transition:all .3s;border:none;cursor:pointer;font-family:'Outfit',sans-serif;width:100%}
+.call-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3)}
+.close-detail{background:transparent;border:1px solid rgba(201,168,76,.2);color:var(--muted);padding:12px 24px;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .3s;border-radius:2px;width:100%}
+.close-detail:hover{color:var(--gold-light);border-color:var(--gold)}
+.find-us-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(201,168,76,.08)}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(201,168,76,.2);flex-shrink:0;line-height:1;width:48px}
+.step-title{font-size:15px;font-weight:500;color:var(--cream);margin-bottom:6px}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.7}
+.landmark-card{background:var(--dark-3);border:1px solid rgba(201,168,76,.1);padding:28px;border-radius:4px;margin-bottom:14px}
+.landmark-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.landmark-item{display:flex;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(201,168,76,.06);font-size:14px;color:var(--muted)}
+.landmark-item:last-child{border-bottom:none}
+.transport-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px}
+.transport-card{background:var(--dark-3);border:1px solid rgba(201,168,76,.06);padding:32px 28px;transition:all .3s}
+.transport-card:hover{border-color:rgba(201,168,76,.2);background:var(--dark-4)}
+.transport-icon{font-size:28px;margin-bottom:16px;display:block}
+.transport-name{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.transport-desc{font-size:14px;color:var(--muted);line-height:1.6}
+.nearby-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:48px}
+.nearby-card{background:var(--dark-3);border:1px solid rgba(201,168,76,.06);padding:28px 24px;transition:all .3s}
+.nearby-card:hover{border-color:rgba(201,168,76,.15)}
+.nearby-icon{font-size:24px;margin-bottom:12px;display:block}
+.nearby-name{font-size:14px;font-weight:500;color:var(--cream);margin-bottom:4px}
+.nearby-time{font-size:12px;color:var(--gold);letter-spacing:1px}
+.assistant-section{background:var(--dark-2);border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1)}
+.assistant-inner{max-width:1200px;margin:0 auto;padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.assistant-chat-preview{background:var(--dark-3);border:1px solid rgba(201,168,76,.15);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.chat-preview-header{background:var(--dark-4);padding:16px 20px;border-bottom:1px solid rgba(201,168,76,.1);display:flex;align-items:center;gap:10px}
+.chat-preview-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--red));display:flex;align-items:center;justify-content:center;font-size:14px}
+.chat-preview-name{font-size:13px;font-weight:500;color:var(--cream)}
+.chat-preview-status{font-size:11px;color:var(--gold)}
+.chat-preview-body{padding:20px;display:flex;flex-direction:column;gap:12px}
+.chat-bubble-bot,.chat-bubble-user{padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5;max-width:80%}
+.chat-bubble-bot{background:var(--dark-4);border:1px solid rgba(201,168,76,.12);color:var(--cream);border-top-left-radius:4px;align-self:flex-start}
+.chat-bubble-user{background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.1));border:1px solid rgba(201,168,76,.25);color:var(--cream);border-top-right-radius:4px;align-self:flex-end}
+.chat-preview-input{padding:12px 20px;border-top:1px solid rgba(201,168,76,.1);display:flex;gap:10px;align-items:center}
+.chat-preview-input-bar{flex:1;background:var(--dark-4);border:1px solid rgba(201,168,76,.15);border-radius:16px;padding:8px 14px;font-size:12px;color:var(--muted)}
+.open-chat-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,var(--gold),#a8863a);color:var(--dark);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:500;border-radius:2px;transition:all .3s;margin-top:32px;border:none;cursor:pointer;font-family:'Outfit',sans-serif}
+.open-chat-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3)}
+footer{padding:48px;border-top:1px solid rgba(201,168,76,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold-light);letter-spacing:2px}
+.footer-text{font-size:13px;color:var(--muted)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){nav{padding:16px 24px}.nav-links{display:none}section{padding:60px 24px}.hostels-intro{padding:60px 24px 40px}.hostels-grid{grid-template-columns:1fr}.hostel-detail-inner{grid-template-columns:1fr;gap:40px;padding:48px 24px}.find-us-grid{grid-template-columns:1fr;gap:40px}.transport-grid{grid-template-columns:1fr}.nearby-grid{grid-template-columns:repeat(2,1fr)}.assistant-inner{grid-template-columns:1fr;padding:60px 24px}footer{padding:32px 24px;flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">Príncipe 18</a>
+  <ul class="nav-links">
+    <li><a href="#hostels">Our Hostels</a></li>
+    <li><a href="#find-us">How to Find Us</a></li>
+    <li><a href="#nearby">Explore Madrid</a></li>
+    <li><a href="#assistant">Guest Assistant</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="hero-tag">Madrid · Calle Príncipe 18</p>
+  <h1>Your home in the<br><em>heart of Madrid</em></h1>
+  <p class="hero-address">Steps from Puerta del Sol</p>
+  <p class="hero-desc">Four boutique hostels sharing one beautiful historic building in the very centre of Madrid. Find your hostel, get directions, and explore the city.</p>
+  <div class="hero-cta">
+    <a href="#hostels" class="btn-primary">Find Your Hostel</a>
+    <a href="#assistant" class="btn-secondary">Guest Assistant</a>
+  </div>
+  <div class="scroll-line">
+    <span>Scroll</span>
+    <div class="scroll-line-bar"></div>
+  </div>
+</div>
+
+<div class="hostels-intro" id="hostels">
+  <span class="section-tag reveal">Our Hostels</span>
+  <h2 class="section-title reveal">Four hostels,<br><em>one iconic building</em></h2>
+  <p class="section-desc reveal" style="margin:0 auto 40px">Select your hostel to see your floor, phone number, and arrival instructions.</p>
+  <div class="divider reveal"></div>
+</div>
+
+<div class="hostels-grid">
+  <a class="hostel-card reveal" onclick="toggleHostel('madrid-star');return false;" href="#madrid-star">
+    <span class="hostel-emoji">⭐</span>
+    <h3 class="hostel-card-name">Madrid Star</h3>
+    <p class="hostel-card-floor">2nd Floor · Right Side</p>
+    <p class="hostel-card-desc">Recently renovated rooms with modern comforts, perfectly placed for exploring Madrid.</p>
+    <span class="hostel-arrow">→</span>
+  </a>
+  <a class="hostel-card reveal" onclick="toggleHostel('petite-maman');return false;" href="#petite-maman">
+    <span class="hostel-emoji">🏡</span>
+    <h3 class="hostel-card-name">Petite Maman</h3>
+    <p class="hostel-card-floor">1st Floor · Right Side</p>
+    <p class="hostel-card-desc">A warm, cosy hostel with a homely feel. Ideal for travellers seeking comfort and character.</p>
+    <span class="hostel-arrow">→</span>
+  </a>
+  <a class="hostel-card reveal" onclick="toggleHostel('palacio-madrid');return false;" href="#palacio-madrid">
+    <span class="hostel-emoji">🏛️</span>
+    <h3 class="hostel-card-name">Palacio Madrid</h3>
+    <p class="hostel-card-floor">3rd Floor · Left Side</p>
+    <p class="hostel-card-desc">Elegant and refined, with a nod to Madrid's grand architectural heritage.</p>
+    <span class="hostel-arrow">→</span>
+  </a>
+  <a class="hostel-card reveal" onclick="toggleHostel('madrid-sol');return false;" href="#madrid-sol">
+    <span class="hostel-emoji">☀️</span>
+    <h3 class="hostel-card-name">Madrid Sol</h3>
+    <p class="hostel-card-floor">4th Floor · Left Side</p>
+    <p class="hostel-card-desc">Named after the iconic Puerta del Sol, just around the corner. An unbeatable location.</p>
+    <span class="hostel-arrow">→</span>
+  </a>
+</div>
+
+<!-- DETAILS -->
+<div class="hostel-detail" id="madrid-star">
+  <div class="hostel-detail-inner">
+    <div>
+      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Your Hostel</p>
+      <h2 class="hostel-detail-title">⭐ Madrid Star</h2>
+      <p class="hostel-detail-subtitle">2nd Floor · Right Side · Calle Príncipe 18</p>
+      <div class="hostel-detail-info">
+        <div class="info-item"><span class="info-icon">🏢</span><div><p class="info-label">Your Floor</p><p class="info-value">2nd floor — take the elevator or stairs, then turn <strong>right</strong></p></div></div>
+        <div class="info-item"><span class="info-icon">📞</span><div><p class="info-label">Phone</p><p class="info-value" style="font-size:22px;font-family:'Cormorant Garamond',serif;color:var(--gold-light)">911 42 80 92</p></div></div>
+        <div class="info-item"><span class="info-icon">🚪</span><div><p class="info-label">Entrance</p><p class="info-value">Press the Madrid Star button on the intercom at the iron gate portal</p></div></div>
+        <div class="info-item"><span class="info-icon">📍</span><div><p class="info-label">Address</p><p class="info-value">Calle Príncipe 18, 2º Derecha, 28012 Madrid</p></div></div>
+      </div>
+    </div>
+    <div class="hostel-detail-right">
+      <div class="hostel-features">
+        <div class="feature">📶 Free WiFi</div><div class="feature">❄️ Air Conditioning</div>
+        <div class="feature">🛁 Private Bathroom</div><div class="feature">🧳 Luggage Storage</div>
+        <div class="feature">🔒 Safe Box</div><div class="feature">📺 Flat Screen TV</div>
+      </div>
+      <a href="tel:+34911428092" class="call-btn">📞 Call Madrid Star — 911 42 80 92</a>
+      <button class="close-detail" onclick="closeHostel('madrid-star')">Close ✕</button>
+    </div>
+  </div>
+</div>
+
+<div class="hostel-detail" id="petite-maman">
+  <div class="hostel-detail-inner">
+    <div>
+      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Your Hostel</p>
+      <h2 class="hostel-detail-title">🏡 Petite Maman</h2>
+      <p class="hostel-detail-subtitle">1st Floor · Right Side · Calle Príncipe 18</p>
+      <div class="hostel-detail-info">
+        <div class="info-item"><span class="info-icon">🏢</span><div><p class="info-label">Your Floor</p><p class="info-value">1st floor — just one floor up, turn <strong>right</strong></p></div></div>
+        <div class="info-item"><span class="info-icon">📞</span><div><p class="info-label">Phone</p><p class="info-value" style="font-size:22px;font-family:'Cormorant Garamond',serif;color:var(--gold-light)">915 31 66 00</p></div></div>
+        <div class="info-item"><span class="info-icon">🚪</span><div><p class="info-label">Entrance</p><p class="info-value">Press the Petite Maman button on the intercom at the iron gate portal</p></div></div>
+        <div class="info-item"><span class="info-icon">📍</span><div><p class="info-label">Address</p><p class="info-value">Calle Príncipe 18, 1º Derecha, 28012 Madrid</p></div></div>
+      </div>
+    </div>
+    <div class="hostel-detail-right">
+      <div class="hostel-features">
+        <div class="feature">📶 Free WiFi</div><div class="feature">❄️ Air Conditioning</div>
+        <div class="feature">🛁 Private Bathroom</div><div class="feature">🧳 Luggage Storage</div>
+        <div class="feature">🔒 Safe Box</div><div class="feature">📺 Flat Screen TV</div>
+      </div>
+      <a href="tel:+34915316600" class="call-btn">📞 Call Petite Maman — 915 31 66 00</a>
+      <button class="close-detail" onclick="closeHostel('petite-maman')">Close ✕</button>
+    </div>
+  </div>
+</div>
+
+<div class="hostel-detail" id="palacio-madrid">
+  <div class="hostel-detail-inner">
+    <div>
+      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Your Hostel</p>
+      <h2 class="hostel-detail-title">🏛️ Palacio Madrid</h2>
+      <p class="hostel-detail-subtitle">3rd Floor · Left Side · Calle Príncipe 18</p>
+      <div class="hostel-detail-info">
+        <div class="info-item"><span class="info-icon">🏢</span><div><p class="info-label">Your Floor</p><p class="info-value">3rd floor — take the elevator or stairs, then turn <strong>left</strong></p></div></div>
+        <div class="info-item"><span class="info-icon">📞</span><div><p class="info-label">Phone</p><p class="info-value" style="font-size:22px;font-family:'Cormorant Garamond',serif;color:var(--gold-light)">915 31 32 70</p></div></div>
+        <div class="info-item"><span class="info-icon">🚪</span><div><p class="info-label">Entrance</p><p class="info-value">Press the Palacio Madrid button on the intercom at the iron gate portal</p></div></div>
+        <div class="info-item"><span class="info-icon">📍</span><div><p class="info-label">Address</p><p class="info-value">Calle Príncipe 18, 3º Izquierda, 28012 Madrid</p></div></div>
+      </div>
+    </div>
+    <div class="hostel-detail-right">
+      <div class="hostel-features">
+        <div class="feature">📶 Free WiFi</div><div class="feature">❄️ Air Conditioning</div>
+        <div class="feature">🛁 Private Bathroom</div><div class="feature">🧳 Luggage Storage</div>
+        <div class="feature">🔒 Safe Box</div><div class="feature">📺 Flat Screen TV</div>
+      </div>
+      <a href="tel:+34915313270" class="call-btn">📞 Call Palacio Madrid — 915 31 32 70</a>
+      <button class="close-detail" onclick="closeHostel('palacio-madrid')">Close ✕</button>
+    </div>
+  </div>
+</div>
+
+<div class="hostel-detail" id="madrid-sol">
+  <div class="hostel-detail-inner">
+    <div>
+      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Your Hostel</p>
+      <h2 class="hostel-detail-title">☀️ Madrid Sol</h2>
+      <p class="hostel-detail-subtitle">4th Floor · Left Side · Calle Príncipe 18</p>
+      <div class="hostel-detail-info">
+        <div class="info-item"><span class="info-icon">🏢</span><div><p class="info-label">Your Floor</p><p class="info-value">4th floor — top of the building, turn <strong>left</strong> from the elevator</p></div></div>
+        <div class="info-item"><span class="info-icon">📞</span><div><p class="info-label">Phone</p><p class="info-value" style="font-size:22px;font-family:'Cormorant Garamond',serif;color:var(--gold-light)">915 31 32 70</p></div></div>
+        <div class="info-item"><span class="info-icon">🚪</span><div><p class="info-label">Entrance</p><p class="info-value">Press the Madrid Sol button on the intercom at the iron gate portal</p></div></div>
+        <div class="info-item"><span class="info-icon">📍</span><div><p class="info-label">Address</p><p class="info-value">Calle Príncipe 18, 4º Izquierda, 28012 Madrid</p></div></div>
+      </div>
+    </div>
+    <div class="hostel-detail-right">
+      <div class="hostel-features">
+        <div class="feature">📶 Free WiFi</div><div class="feature">❄️ Air Conditioning</div>
+        <div class="feature">🛁 Private Bathroom</div><div class="feature">🧳 Luggage Storage</div>
+        <div class="feature">🔒 Safe Box</div><div class="feature">📺 Flat Screen TV</div>
+      </div>
+      <a href="tel:+34915313270" class="call-btn">📞 Call Madrid Sol — 915 31 32 70</a>
+      <button class="close-detail" onclick="closeHostel('madrid-sol')">Close ✕</button>
+    </div>
+  </div>
+</div>
+
+<!-- FIND US -->
+<section id="find-us">
+  <span class="section-tag reveal">Arrival Guide</span>
+  <h2 class="section-title reveal">How to <em>find us</em></h2>
+  <p class="section-desc reveal">The building can be tricky to spot on your first visit. Follow these steps.</p>
+  <div class="find-us-grid">
+    <div class="steps reveal">
+      <div class="step"><span class="step-num">01</span><div><p class="step-title">Head to Calle Príncipe 18</p><p class="step-desc">A short walk from Puerta del Sol and Plaza de Santa Ana, in the heart of Madrid's historic centre.</p></div></div>
+      <div class="step"><span class="step-num">02</span><div><p class="step-title">Look for the iron gate portal</p><p class="step-desc">The entrance has distinctive iron gate doors — you can see through them. Look for 100 Montaditos on your left and La Abacería del Príncipe on your right.</p></div></div>
+      <div class="step"><span class="step-num">03</span><div><p class="step-title">Use the intercom</p><p class="step-desc">Press the button for your specific hostel. If no answer, look for the porter in the small room behind the elevator on the ground floor.</p></div></div>
+      <div class="step"><span class="step-num">04</span><div><p class="step-title">Take the historic elevator</p><p class="step-desc">Our 120-year-old elevator is part of the charm! All 3 doors must be fully closed to work. Stairs are right next to it.</p></div></div>
+    </div>
+    <div class="reveal">
+      <div class="landmark-card">
+        <p class="landmark-title">Landmarks at the entrance</p>
+        <div class="landmark-item"><span>🍔</span><span><strong>100 Montaditos</strong> — immediately to the LEFT</span></div>
+        <div class="landmark-item"><span>🍷</span><span><strong>La Abacería del Príncipe</strong> — to the RIGHT</span></div>
+        <div class="landmark-item"><span>🚪</span><span>Iron gate-style portal doors (see-through)</span></div>
+      </div>
+      <div class="landmark-card">
+        <p class="landmark-title">Building floors</p>
+        <div class="landmark-item"><span>🏡</span><span><strong>1st floor, Right</strong> — Petite Maman</span></div>
+        <div class="landmark-item"><span>⭐</span><span><strong>2nd floor, Right</strong> — Madrid Star</span></div>
+        <div class="landmark-item"><span>🏛️</span><span><strong>3rd floor, Left</strong> — Palacio Madrid</span></div>
+        <div class="landmark-item"><span>☀️</span><span><strong>4th floor, Left</strong> — Madrid Sol</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="transport-grid reveal">
+    <div class="transport-card"><span class="transport-icon">🚇</span><p class="transport-name">Metro</p><p class="transport-desc">Lines 1, 2 & 3 → Sol station. Just 2 minutes on foot.</p></div>
+    <div class="transport-card"><span class="transport-icon">🚆</span><p class="transport-name">Cercanías</p><p class="transport-desc">Lines C3 & C4 → Sol. Direct from Atocha & Chamartín.</p></div>
+    <div class="transport-card"><span class="transport-icon">🚕</span><p class="transport-name">Taxi & Uber</p><p class="transport-desc">Ask for Plaza de Canalejas — just around the corner.</p></div>
+  </div>
+</section>
+
+<!-- NEARBY -->
+<section id="nearby" style="padding-top:0">
+  <span class="section-tag reveal">Explore Madrid</span>
+  <h2 class="section-title reveal">Everything on your <em>doorstep</em></h2>
+  <p class="section-desc reveal">Madrid's greatest attractions are just minutes away on foot.</p>
+  <div class="nearby-grid reveal">
+    <div class="nearby-card"><span class="nearby-icon">☀️</span><p class="nearby-name">Puerta del Sol</p><p class="nearby-time">2 min walk</p></div>
+    <div class="nearby-card"><span class="nearby-icon">🍷</span><p class="nearby-name">Plaza de Santa Ana</p><p class="nearby-time">2 min walk</p></div>
+    <div class="nearby-card"><span class="nearby-icon">🏛️</span><p class="nearby-name">Plaza Mayor</p><p class="nearby-time">5 min walk</p></div>
+    <div class="nearby-card"><span class="nearby-icon">🎨</span><p class="nearby-name">Museo del Prado</p><p class="nearby-time">15 min walk</p></div>
+    <div class="nearby-card"><span class="nearby-icon">🌿</span><p class="nearby-name">Retiro Park</p><p class="nearby-time">20 min walk</p></div>
+    <div class="nearby-card"><span class="nearby-icon">🛍️</span><p class="nearby-name">Gran Vía</p><p class="nearby-time">10 min walk</p></div>
+    <div class="nearby-card"><span class="nearby-icon">🎭</span><p class="nearby-name">Teatro Español</p><p class="nearby-time">1 min walk</p></div>
+    <div class="nearby-card"><span class="nearby-icon">🍺</span><p class="nearby-name">Barrio de las Letras</p><p class="nearby-time">On your doorstep</p></div>
+  </div>
+</section>
+
+<!-- ASSISTANT -->
+<div class="assistant-section" id="assistant">
+  <div class="assistant-inner">
+    <div class="reveal">
+      <span class="section-tag">24/7 Guest Assistant</span>
+      <h2 class="section-title">Need help<br><em>right now?</em></h2>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px">Our AI-powered guest assistant speaks 14 languages and can answer any question — getting here, finding your floor, the elevator, nearby restaurants, and more.</p>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7">Available 24 hours a day, 7 days a week. No waiting — just instant answers in your language.</p>
+      <a href="https://adrianopatrny.github.io/principe18" target="_blank" class="open-chat-btn">Open Guest Assistant →</a>
+    </div>
+    <div class="assistant-chat-preview reveal">
+      <div class="chat-preview-header">
+        <div class="chat-preview-avatar">🏨</div>
+        <div><p class="chat-preview-name">Príncipe 18 Assistant</p><p class="chat-preview-status">● Online now</p></div>
+      </div>
+      <div class="chat-preview-body">
+        <div class="chat-bubble-bot">Hi! Which hostel did you book? 👇</div>
+        <div class="chat-bubble-user">Madrid Star</div>
+        <div class="chat-bubble-bot">You're all set! ⭐ Go to the <strong>2nd floor, right side</strong>. Look for the iron gate portal between 100 Montaditos and La Abacería. Need anything else?</div>
+        <div class="chat-bubble-user">The elevator isn't working!</div>
+        <div class="chat-bubble-bot">Don't worry! 🛗 The elevator needs all 3 doors fully closed. Check if someone left one open on another floor. Stairs are right next to it!</div>
+      </div>
+      <div class="chat-preview-input"><div class="chat-preview-input-bar">Ask anything...</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-logo">Calle Príncipe 18 · Madrid</p>
+  <p class="footer-text">Steps from Puerta del Sol · 28012 Madrid, Spain</p>
+  <p class="footer-text" style="color:var(--gold)">🇪🇸</p>
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach((entry,i)=>{
+    if(entry.isIntersecting){
+      setTimeout(()=>entry.target.classList.add('visible'),i*80);
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.1});
+reveals.forEach(el=>observer.observe(el));
+
+function toggleHostel(id){
+  const detail=document.getElementById(id);
+  const all=document.querySelectorAll('.hostel-detail');
+  if(detail.classList.contains('active')){detail.classList.remove('active');return;}
+  all.forEach(d=>d.classList.remove('active'));
+  detail.classList.add('active');
+  setTimeout(()=>detail.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+function closeHostel(id){document.getElementById(id).classList.remove('active');}
+</script>
+</body>
+</html>
